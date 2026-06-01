@@ -45,10 +45,6 @@
       text-decoration: none;
     }
 
-    button {
-      font-family: inherit;
-    }
-
     .page {
       width: min(1120px, 92%);
       margin: 0 auto;
@@ -228,81 +224,44 @@
       font-size: 15px;
     }
 
-    .support-buttons {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .amount-btn {
-      padding: 18px 14px;
-      border-radius: 16px;
-      background: var(--card2);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      text-align: center;
-      font-weight: 900;
-      font-size: 20px;
-      color: var(--text);
-      cursor: pointer;
-      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-    }
-
-    .amount-btn:hover {
-      transform: translateY(-2px);
-      border-color: rgba(244, 199, 107, 0.55);
-    }
-
-    .amount-btn span {
-      display: block;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 600;
-      margin-top: 4px;
-    }
-
-    .amount-btn.active {
-      background: linear-gradient(135deg, rgba(244, 199, 107, 0.35), rgba(57, 217, 138, 0.18));
-      border-color: rgba(244, 199, 107, 0.75);
-      box-shadow: 0 0 22px rgba(244, 199, 107, 0.28);
-    }
-
-    .selected-amount {
-      margin-top: 16px;
-      color: var(--gold);
-      font-weight: 800;
-      text-align: center;
-    }
-
     .payment-list {
       display: grid;
-      gap: 12px;
-      margin-top: 16px;
+      gap: 14px;
+      margin-top: 18px;
     }
 
     .payment-item {
       background: rgba(0, 0, 0, 0.24);
       border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 16px;
-      padding: 16px;
-      transition: transform 0.15s ease, border-color 0.15s ease;
+      border-radius: 18px;
+      padding: 18px;
+      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+      display: block;
     }
 
-    a.payment-item:hover {
+    .payment-item:hover {
       transform: translateY(-2px);
       border-color: rgba(244, 199, 107, 0.55);
+      box-shadow: 0 0 22px rgba(244, 199, 107, 0.14);
     }
 
     .payment-label {
       color: var(--gold);
       font-weight: 900;
       margin-bottom: 4px;
+      font-size: 19px;
     }
 
     .payment-value {
       color: var(--text);
       word-break: break-word;
       font-weight: 700;
+    }
+
+    .payment-description {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 6px;
     }
 
     .story p,
@@ -372,7 +331,6 @@
         padding: 42px 22px;
       }
 
-      .support-buttons,
       .expense-list {
         grid-template-columns: 1fr;
       }
@@ -443,61 +401,48 @@
 
     <section id="support" class="grid">
       <div class="card">
-        <h2 class="section-title">Quick Support Options</h2>
+        <h2 class="section-title">Choose How You’d Like to Support</h2>
+
         <p class="progress-note">
-          Choose an amount below, then use Venmo, PayPal, or Apple Pay to send support.
+          Select a payment option below and enter any amount that works for you.
         </p>
-
-        <div class="support-buttons">
-          <button class="amount-btn" type="button" onclick="selectAmount(event, 25)">
-            $25
-            <span>Meals and snacks</span>
-          </button>
-
-          <button class="amount-btn" type="button" onclick="selectAmount(event, 50)">
-            $50
-            <span>Trip essentials</span>
-          </button>
-
-          <button class="amount-btn" type="button" onclick="selectAmount(event, 100)">
-            $100
-            <span>Travel expenses</span>
-          </button>
-
-          <button class="amount-btn" type="button" onclick="selectAmount(event, 250)">
-            $250
-            <span>Major trip support</span>
-          </button>
-        </div>
-
-        <p id="selectedAmount" class="selected-amount">
-          Select an amount above, then choose a payment option.
-        </p>
-      </div>
-
-      <div class="card">
-        <h2 class="section-title">Send Support</h2>
 
         <div class="payment-list">
           <a class="payment-item" href="https://venmo.com/u/Csgentry" target="_blank" rel="noopener">
             <div class="payment-label">Venmo</div>
             <div class="payment-value">@Csgentry</div>
+            <div class="payment-description">Opens Venmo so you can enter your own amount.</div>
           </a>
 
           <a class="payment-item" href="https://www.paypal.me/CodyGentry" target="_blank" rel="noopener">
             <div class="payment-label">PayPal</div>
             <div class="payment-value">@CodyGentry</div>
+            <div class="payment-description">Opens PayPal so you can enter your own amount.</div>
           </a>
 
-          <div class="payment-item">
+          <a class="payment-item" href="sms:+13175077258?body=Hi%20Cody%2C%20I%27d%20like%20to%20support%20Landon%27s%20IberCup%20trip.">
             <div class="payment-label">Apple Pay</div>
-            <div class="payment-value">317-507-7258</div>
-          </div>
+            <div class="payment-value">Text Cody at 317-507-7258</div>
+            <div class="payment-description">Opens a text message so you can send support through Apple Cash.</div>
+          </a>
         </div>
 
         <p class="progress-note">
           Please include “Landon IberCup” in the note if possible.
         </p>
+      </div>
+
+      <div class="card">
+        <h2 class="section-title">What Support Helps Cover</h2>
+
+        <div class="expense-list">
+          <div class="expense">Tournament fees</div>
+          <div class="expense">Airfare</div>
+          <div class="expense">Hotel and lodging</div>
+          <div class="expense">Meals</div>
+          <div class="expense">Local transportation</div>
+          <div class="expense">Trip gear</div>
+        </div>
       </div>
     </section>
 
@@ -518,33 +463,20 @@
         </p>
       </div>
 
-      <div class="card">
-        <h2 class="section-title">What Support Helps Cover</h2>
+      <div class="card thank-you">
+        <h2 class="section-title">Thank You</h2>
 
-        <div class="expense-list">
-          <div class="expense">Tournament fees</div>
-          <div class="expense">Airfare</div>
-          <div class="expense">Hotel and lodging</div>
-          <div class="expense">Meals</div>
-          <div class="expense">Local transportation</div>
-          <div class="expense">Trip gear</div>
+        <p>
+          Thank you for supporting Landon. Whether you are able to contribute, share the page, or simply cheer him on, it means a lot.
+        </p>
+
+        <p>
+          We are grateful for every person who has helped encourage him along the way.
+        </p>
+
+        <div class="names">
+          Supporter wall coming soon.
         </div>
-      </div>
-    </section>
-
-    <section class="card thank-you supporter-wall">
-      <h2 class="section-title">Thank You</h2>
-
-      <p>
-        Thank you for supporting Landon. Whether you are able to contribute, share the page, or simply cheer him on, it means a lot.
-      </p>
-
-      <p>
-        We are grateful for every person who has helped encourage him along the way.
-      </p>
-
-      <div class="names">
-        Supporter wall coming soon.
       </div>
     </section>
 
@@ -564,17 +496,5 @@
     </p>
 
   </main>
-
-  <script>
-    function selectAmount(event, amount) {
-      const buttons = document.querySelectorAll('.amount-btn');
-      buttons.forEach(button => button.classList.remove('active'));
-
-      event.currentTarget.classList.add('active');
-
-      const message = document.getElementById('selectedAmount');
-      message.textContent = `You selected $${amount}. Now choose Venmo, PayPal, or Apple Pay to send support.`;
-    }
-  </script>
 </body>
 </html>
