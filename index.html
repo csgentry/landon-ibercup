@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support Landon’s IberCup Journey</title>
+
+  <style>
+    :root {
+      --bg: #071018;
+      --bg2: #101b27;
+      --card: rgba(255, 255, 255, 0.08);
+      --card2: rgba(255, 255, 255, 0.12);
+      --text: #ffffff;
+      --muted: #c8d2dc;
+      --gold: #f4c76b;
+      --gold2: #d89b2b;
+      --blue: #1f6feb;
+      --green: #39d98a;
+      --danger: #ff6b6b;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(244, 199, 107, 0.20), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(31, 111, 235, 0.22), transparent 40%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+      padding: 32px 0 56px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: 56px 32px;
+      background:
+        linear-gradient(135deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.25)),
+        radial-gradient(circle at top right, rgba(244, 199, 107, 0.18), transparent 38%),
+        rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(115deg, transparent 0%, transparent 38%, rgba(244, 199, 107, 0.12) 39%, transparent 48%),
+        repeating-linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.03) 0px,
+          rgba(255, 255, 255, 0.03) 1px,
+          transparent 1px,
+          transparent 12px
+        );
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 850px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(244, 199, 107, 0.15);
+      border: 1px solid rgba(244, 199, 107, 0.45);
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 7vw, 76px);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+    }
+
+    .gold {
+      color: var(--gold);
+    }
+
+    .subtitle {
+      font-size: clamp(18px, 2.2vw, 24px);
+      color: var(--muted);
+      max-width: 760px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: 800;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.92;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: #17120a;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.10);
+      color: var(--text);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+      margin-top: 22px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22);
+      backdrop-filter: blur(10px);
+    }
+
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 12px;
+      letter-spacing: -0.03em;
+    }
+
+    .progress-card {
+      margin-top: 22px;
+    }
+
+    .progress-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: end;
+      margin-bottom: 12px;
+    }
+
+    .amount {
+      font-size: clamp(34px, 5vw, 52px);
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .goal {
+      color: var(--muted);
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .progress-bar {
+      height: 22px;
+      background: rgba(255, 255, 255, 0.11);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .progress-fill {
+      width: 20%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--green));
+      border-radius: 999px;
+      box-shadow: 0 0 22px rgba(244, 199, 107, 0.55);
+    }
+
+    .progress-note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .support-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .amount-btn {
+      padding: 18px 14px;
+      border-radius: 16px;
+      background: var(--card2);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      text-align: center;
+      font-weight: 900;
+      font-size: 20px;
+    }
+
+    .amount-btn span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .payment-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .payment-item {
+      background: rgba(0, 0, 0, 0.24);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .payment-label {
+      color: var(--gold);
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .payment-value {
+      color: var(--text);
+      word-break: break-word;
+      font-weight: 700;
+    }
+
+    .story p,
+    .thank-you p {
+      color: var(--muted);
+      margin-bottom: 14px;
+      font-size: 17px;
+    }
+
+    .expense-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .expense {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 16px;
+      font-weight: 800;
+    }
+
+    .supporter-wall {
+      margin-top: 22px;
+      text-align: center;
+    }
+
+    .supporter-wall .names {
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .footer-cta {
+      margin-top: 22px;
+      text-align: center;
+      padding: 36px 24px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(244, 199, 107, 0.18), rgba(255, 255, 255, 0.08));
+      border: 1px solid rgba(244, 199, 107, 0.28);
+    }
+
+    .footer-cta h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      margin-bottom: 10px;
+    }
+
+    .footer-cta p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .small-note {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    @media (max-width: 840px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 42px 22px;
+      }
+
+      .support-buttons,
+      .expense-list {
+        grid-template-columns: 1fr;
+      }
+
+      .progress-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .goal {
+        text-align: left;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">IberCup Estoril 2026 • Portugal</div>
+
+        <h1>
+          Support Landon’s <span class="gold">IberCup Journey</span>
+        </h1>
+
+        <p class="subtitle">
+          Landon has the opportunity to travel to Portugal this summer to compete at IberCup Estoril.
+          This page was created for family, friends, and supporters who have asked how they can help.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://venmo.com/u/Csgentry" target="_blank" rel="noopener">
+            Support Landon
+          </a>
+          <a class="btn btn-secondary" href="#story">
+            Read His Story
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card progress-card">
+      <div class="progress-top">
+        <div>
+          <h2 class="section-title">Goal Tracker</h2>
+          <div class="amount">$1,000 raised</div>
+        </div>
+        <div class="goal">
+          $5,000 goal<br />
+          20% funded
+        </div>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+
+      <p class="progress-note">
+        Every contribution helps Landon get one step closer to Portugal.
+      </p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2 class="section-title">Quick Support Options</h2>
+        <p class="progress-note">
+          Choose any amount that works for you. Any support is appreciated.
+        </p>
+
+        <div class="support-buttons">
+          <a class="amount-btn" href="https://venmo.com/u/Csgentry" target="_blank" rel="noopener">
+            $25
+            <span>Meals and snacks</span>
+          </a>
+
+          <a class="amount-btn" href="https://venmo.com/u/Csgentry" target="_blank" rel="noopener">
+            $50
+            <span>Trip essentials</span>
+          </a>
+
+          <a class="amount-btn" href="https://venmo.com/u/Csgentry" target="_blank" rel="noopener">
+            $100
+            <span>Travel expenses</span>
+          </a>
+
+          <a class="amount-btn" href="https://venmo.com/u/Csgentry" target="_blank" rel="noopener">
+            $250
+            <span>Major trip support</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="section-title">Send Support</h2>
+
+        <div class="payment-list">
+          <a class="payment-item" href="https://venmo.com/u/Csgentry" target="_blank" rel="noopener">
+            <div class="payment-label">Venmo</div>
+            <div class="payment-value">@Csgentry</div>
+          </a>
+
+          <a class="payment-item" href="https://www.paypal.me/CodyGentry" target="_blank" rel="noopener">
+            <div class="payment-label">PayPal</div>
+            <div class="payment-value">@CodyGentry</div>
+          </a>
+
+          <div class="payment-item">
+            <div class="payment-label">Apple Pay</div>
+            <div class="payment-value">317-507-7258</div>
+          </div>
+        </div>
+
+        <p class="progress-note">
+          Please include “Landon IberCup” in the note if possible.
+        </p>
+      </div>
+    </section>
+
+    <section id="story" class="grid">
+      <div class="card story">
+        <h2 class="section-title">Why This Trip Matters</h2>
+
+        <p>
+          Landon has worked incredibly hard to continue growing as a player, and this opportunity gives him the chance to compete against international competition in Portugal.
+        </p>
+
+        <p>
+          IberCup Estoril will give him the chance to experience a different soccer culture, challenge himself against teams from around the world, and represent his club on a bigger stage.
+        </p>
+
+        <p>
+          For Landon, this is more than just a tournament. It is a chance to grow, compete, learn, and experience something that will stay with him for a long time.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2 class="section-title">What Support Helps Cover</h2>
+
+        <div class="expense-list">
+          <div class="expense">Tournament fees</div>
+          <div class="expense">Airfare</div>
+          <div class="expense">Hotel and lodging</div>
+          <div class="expense">Meals</div>
+          <div class="expense">Local transportation</div>
+          <div class="expense">Trip gear</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card thank-you supporter-wall">
+      <h2 class="section-title">Thank You</h2>
+
+      <p>
+        Thank you for supporting Landon. Whether you are able to contribute, share the page, or simply cheer him on, it means a lot.
+      </p>
+
+      <p>
+        We are grateful for every person who has helped encourage him along the way.
+      </p>
+
+      <div class="names">
+        Supporter wall coming soon.
+      </div>
+    </section>
+
+    <section class="footer-cta">
+      <h2>Portugal, here we come.</h2>
+      <p>
+        Help Landon make the most of this opportunity at IberCup Estoril.
+      </p>
+
+      <a class="btn btn-primary" href="https://venmo.com/u/Csgentry" target="_blank" rel="noopener">
+        Support Landon
+      </a>
+    </section>
+
+    <p class="small-note">
+      This is a personal support page for Landon’s IberCup trip. Contributions are not tax-deductible.
+    </p>
+
+  </main>
+</body>
+</html>
