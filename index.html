@@ -235,41 +235,43 @@
 
     .progress-card {
       margin-top: 22px;
+      text-align: center;
+      padding: 34px 30px;
+      background:
+        radial-gradient(circle at center top, rgba(244, 199, 107, 0.15), transparent 34%),
+        rgba(255, 255, 255, 0.075);
     }
 
-    .progress-top {
+    .progress-main {
       display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      align-items: end;
-      margin-bottom: 14px;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
     }
 
     .amount {
-      font-size: clamp(36px, 5vw, 56px);
+      font-size: clamp(42px, 6vw, 64px);
       font-weight: 900;
       color: var(--gold);
       line-height: 1;
+      letter-spacing: -0.055em;
     }
 
-    .goal {
+    .goal-line {
       color: var(--muted);
+      font-size: clamp(17px, 2vw, 20px);
       font-weight: 800;
-      text-align: right;
-    }
-
-    .departure {
-      margin-top: 6px;
-      color: var(--text);
-      font-weight: 900;
     }
 
     .progress-bar {
+      width: min(680px, 100%);
       height: 22px;
       background: rgba(255, 255, 255, 0.11);
       border-radius: 999px;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.12);
+      margin: 0 auto;
     }
 
     .progress-fill {
@@ -280,8 +282,29 @@
       box-shadow: 0 0 24px rgba(244, 199, 107, 0.58);
     }
 
+    .tracker-details {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .tracker-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(244, 199, 107, 0.10);
+      border: 1px solid rgba(244, 199, 107, 0.26);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
     .progress-note {
-      margin-top: 10px;
+      margin-top: 12px;
       color: var(--muted);
       font-size: 15px;
     }
@@ -476,17 +499,30 @@
         grid-template-columns: 1fr;
       }
 
-      .progress-top {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .goal {
-        text-align: left;
-      }
-
       .card {
         padding: 24px;
+      }
+
+      .progress-card {
+        padding: 28px 22px;
+      }
+
+      .amount {
+        font-size: clamp(42px, 13vw, 58px);
+      }
+
+      .goal-line {
+        font-size: 17px;
+      }
+
+      .tracker-details {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .tracker-pill {
+        width: 100%;
+        max-width: 320px;
       }
 
       .cover-grid {
@@ -537,20 +573,20 @@
     </section>
 
     <section class="card progress-card">
-      <div class="progress-top">
-        <div>
-          <h2 class="section-title">Goal Tracker</h2>
-          <div class="amount">$1,000 raised</div>
-        </div>
+      <h2 class="section-title">Goal Tracker</h2>
 
-        <div class="goal">
-          $5,000 goal
-          <div class="departure">Departure: June 29, 2026</div>
-        </div>
+      <div class="progress-main">
+        <div class="amount">$1,000 raised</div>
+        <div class="goal-line">of $5,000 goal</div>
       </div>
 
       <div class="progress-bar">
         <div class="progress-fill"></div>
+      </div>
+
+      <div class="tracker-details">
+        <div class="tracker-pill">20% Funded</div>
+        <div class="tracker-pill">Departure: June 29, 2026</div>
       </div>
 
       <p class="progress-note">
