@@ -7,16 +7,18 @@
 
   <style>
     :root {
-      --bg: #071018;
-      --bg2: #101b27;
-      --card: rgba(255, 255, 255, 0.08);
-      --card2: rgba(255, 255, 255, 0.12);
+      --bg: #05070b;
+      --bg2: #111823;
+      --card: rgba(255, 255, 255, 0.075);
+      --card-strong: rgba(255, 255, 255, 0.11);
       --text: #ffffff;
-      --muted: #c8d2dc;
+      --muted: #c9d2dc;
+      --soft: #9faab6;
       --gold: #f4c76b;
-      --gold2: #d89b2b;
-      --green: #39d98a;
-      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      --gold2: #d69a2d;
+      --green: #36d68b;
+      --line: rgba(255, 255, 255, 0.14);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.48);
     }
 
     * {
@@ -31,13 +33,47 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(244, 199, 107, 0.20), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(31, 111, 235, 0.22), transparent 40%),
-        linear-gradient(135deg, var(--bg), var(--bg2));
       color: var(--text);
       min-height: 100vh;
       line-height: 1.5;
+      background:
+        radial-gradient(circle at 20% 5%, rgba(244, 199, 107, 0.28), transparent 26%),
+        radial-gradient(circle at 85% 10%, rgba(214, 154, 45, 0.18), transparent 28%),
+        radial-gradient(circle at 85% 80%, rgba(31, 111, 235, 0.16), transparent 34%),
+        linear-gradient(135deg, #030407 0%, #08111a 45%, #111827 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(115deg, transparent 0%, transparent 37%, rgba(244, 199, 107, 0.13) 38%, transparent 48%),
+        linear-gradient(65deg, transparent 0%, transparent 62%, rgba(244, 199, 107, 0.10) 64%, transparent 72%),
+        repeating-linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.028) 0px,
+          rgba(255, 255, 255, 0.028) 1px,
+          transparent 1px,
+          transparent 14px
+        );
+      opacity: 0.9;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      left: -10%;
+      right: -10%;
+      bottom: -120px;
+      height: 300px;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at center, rgba(244, 199, 107, 0.22), transparent 58%),
+        linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+      filter: blur(2px);
     }
 
     a {
@@ -46,6 +82,8 @@
     }
 
     .page {
+      position: relative;
+      z-index: 2;
       width: min(1120px, 92%);
       margin: 0 auto;
       padding: 32px 0 56px;
@@ -54,14 +92,15 @@
     .hero {
       position: relative;
       overflow: hidden;
-      border-radius: 28px;
-      padding: 56px 32px;
+      border-radius: 30px;
+      padding: 62px 34px;
       background:
-        linear-gradient(135deg, rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.25)),
-        radial-gradient(circle at top right, rgba(244, 199, 107, 0.18), transparent 38%),
-        rgba(255, 255, 255, 0.08);
+        linear-gradient(135deg, rgba(0, 0, 0, 0.66), rgba(0, 0, 0, 0.28)),
+        radial-gradient(circle at top right, rgba(244, 199, 107, 0.24), transparent 38%),
+        radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.08), transparent 32%),
+        rgba(255, 255, 255, 0.075);
       box-shadow: var(--shadow);
-      border: 1px solid rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(244, 199, 107, 0.20);
     }
 
     .hero::before {
@@ -69,33 +108,46 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(115deg, transparent 0%, transparent 38%, rgba(244, 199, 107, 0.12) 39%, transparent 48%),
+        linear-gradient(115deg, transparent 0%, transparent 40%, rgba(244, 199, 107, 0.16) 41%, transparent 50%),
+        radial-gradient(circle at 90% 72%, rgba(244, 199, 107, 0.16), transparent 26%),
         repeating-linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.03) 0px,
-          rgba(255, 255, 255, 0.03) 1px,
+          90deg,
+          rgba(255, 255, 255, 0.035) 0px,
+          rgba(255, 255, 255, 0.035) 1px,
           transparent 1px,
-          transparent 12px
+          transparent 22px
         );
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "IBERCUP ESTORIL";
+      position: absolute;
+      right: -24px;
+      bottom: 18px;
+      font-size: clamp(48px, 11vw, 132px);
+      font-weight: 900;
+      letter-spacing: -0.08em;
+      color: rgba(255, 255, 255, 0.035);
+      white-space: nowrap;
       pointer-events: none;
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 850px;
+      max-width: 860px;
     }
 
     .eyebrow {
       display: inline-flex;
-      gap: 8px;
       align-items: center;
       padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(244, 199, 107, 0.15);
-      border: 1px solid rgba(244, 199, 107, 0.45);
+      background: rgba(244, 199, 107, 0.14);
+      border: 1px solid rgba(244, 199, 107, 0.42);
       color: var(--gold);
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       font-size: 13px;
@@ -103,9 +155,9 @@
     }
 
     h1 {
-      font-size: clamp(38px, 7vw, 76px);
+      font-size: clamp(40px, 7vw, 78px);
       line-height: 0.95;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.055em;
       margin-bottom: 18px;
     }
 
@@ -116,7 +168,7 @@
     .subtitle {
       font-size: clamp(18px, 2.2vw, 24px);
       color: var(--muted);
-      max-width: 760px;
+      max-width: 790px;
       margin-bottom: 30px;
     }
 
@@ -134,20 +186,21 @@
       min-height: 52px;
       padding: 14px 22px;
       border-radius: 14px;
-      font-weight: 800;
-      transition: transform 0.15s ease, opacity 0.15s ease;
+      font-weight: 900;
+      transition: transform 0.15s ease, opacity 0.15s ease, border-color 0.15s ease;
       border: 1px solid rgba(255, 255, 255, 0.14);
       cursor: pointer;
     }
 
     .btn:hover {
       transform: translateY(-2px);
-      opacity: 0.92;
+      opacity: 0.94;
     }
 
     .btn-primary {
       background: linear-gradient(135deg, var(--gold), var(--gold2));
       color: #17120a;
+      box-shadow: 0 12px 30px rgba(244, 199, 107, 0.18);
     }
 
     .btn-secondary {
@@ -155,26 +208,20 @@
       color: var(--text);
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 22px;
-      margin-top: 22px;
-    }
-
     .card {
       background: var(--card);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 24px;
-      padding: 28px;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22);
-      backdrop-filter: blur(10px);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 30px;
+      box-shadow: 0 14px 42px rgba(0, 0, 0, 0.24);
+      backdrop-filter: blur(12px);
     }
 
     .section-title {
-      font-size: 28px;
+      font-size: clamp(25px, 3vw, 32px);
+      line-height: 1.05;
       margin-bottom: 12px;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.035em;
     }
 
     .progress-card {
@@ -184,13 +231,13 @@
     .progress-top {
       display: flex;
       justify-content: space-between;
-      gap: 16px;
+      gap: 18px;
       align-items: end;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .amount {
-      font-size: clamp(34px, 5vw, 52px);
+      font-size: clamp(36px, 5vw, 56px);
       font-weight: 900;
       color: var(--gold);
       line-height: 1;
@@ -198,7 +245,7 @@
 
     .goal {
       color: var(--muted);
-      font-weight: 700;
+      font-weight: 800;
       text-align: right;
     }
 
@@ -215,7 +262,7 @@
       height: 100%;
       background: linear-gradient(90deg, var(--gold), var(--green));
       border-radius: 999px;
-      box-shadow: 0 0 22px rgba(244, 199, 107, 0.55);
+      box-shadow: 0 0 24px rgba(244, 199, 107, 0.58);
     }
 
     .progress-note {
@@ -224,44 +271,104 @@
       font-size: 15px;
     }
 
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 22px;
+    }
+
+    .payment-card {
+      background:
+        radial-gradient(circle at top right, rgba(244, 199, 107, 0.13), transparent 34%),
+        var(--card);
+    }
+
     .payment-list {
       display: grid;
-      gap: 14px;
-      margin-top: 18px;
+      gap: 12px;
+      margin-top: 22px;
     }
 
     .payment-item {
-      background: rgba(0, 0, 0, 0.24);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 72px;
+      padding: 18px 20px;
       border-radius: 18px;
-      padding: 18px;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.13);
       transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
-      display: block;
     }
 
     .payment-item:hover {
       transform: translateY(-2px);
-      border-color: rgba(244, 199, 107, 0.55);
-      box-shadow: 0 0 22px rgba(244, 199, 107, 0.14);
+      border-color: rgba(244, 199, 107, 0.58);
+      box-shadow: 0 0 24px rgba(244, 199, 107, 0.13);
+    }
+
+    .payment-left {
+      display: grid;
+      gap: 2px;
     }
 
     .payment-label {
-      color: var(--gold);
+      color: var(--text);
       font-weight: 900;
-      margin-bottom: 4px;
-      font-size: 19px;
+      font-size: 20px;
     }
 
     .payment-value {
-      color: var(--text);
-      word-break: break-word;
+      color: var(--muted);
       font-weight: 700;
+      font-size: 14px;
     }
 
-    .payment-description {
+    .payment-arrow {
+      color: var(--gold);
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .note-box {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(244, 199, 107, 0.10);
+      border: 1px solid rgba(244, 199, 107, 0.20);
       color: var(--muted);
       font-size: 14px;
-      margin-top: 6px;
+    }
+
+    .covers-card {
+      background:
+        radial-gradient(circle at bottom left, rgba(244, 199, 107, 0.11), transparent 32%),
+        var(--card);
+    }
+
+    .cover-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .cover-item {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(0, 0, 0, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      text-align: center;
+      font-weight: 900;
+      color: var(--text);
+      font-size: 16px;
+      letter-spacing: -0.01em;
     }
 
     .story p,
@@ -271,43 +378,32 @@
       font-size: 17px;
     }
 
-    .expense-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .expense {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 16px;
-      padding: 16px;
-      font-weight: 800;
+    .thank-you {
+      text-align: left;
     }
 
     .supporter-wall {
-      margin-top: 22px;
-      text-align: center;
-    }
-
-    .supporter-wall .names {
-      color: var(--muted);
-      margin-top: 8px;
+      color: var(--soft);
+      margin-top: 14px;
+      font-size: 14px;
     }
 
     .footer-cta {
       margin-top: 22px;
       text-align: center;
-      padding: 36px 24px;
-      border-radius: 24px;
-      background: linear-gradient(135deg, rgba(244, 199, 107, 0.18), rgba(255, 255, 255, 0.08));
+      padding: 40px 24px;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at center top, rgba(244, 199, 107, 0.22), transparent 36%),
+        linear-gradient(135deg, rgba(244, 199, 107, 0.16), rgba(255, 255, 255, 0.075));
       border: 1px solid rgba(244, 199, 107, 0.28);
+      box-shadow: 0 14px 42px rgba(0, 0, 0, 0.22);
     }
 
     .footer-cta h2 {
-      font-size: clamp(28px, 4vw, 44px);
+      font-size: clamp(30px, 4vw, 48px);
       margin-bottom: 10px;
+      letter-spacing: -0.04em;
     }
 
     .footer-cta p {
@@ -316,22 +412,24 @@
     }
 
     .small-note {
-      color: var(--muted);
+      color: var(--soft);
       font-size: 13px;
       margin-top: 18px;
       text-align: center;
     }
 
     @media (max-width: 840px) {
-      .grid {
-        grid-template-columns: 1fr;
+      .page {
+        width: min(94%, 1120px);
+        padding-top: 18px;
       }
 
       .hero {
         padding: 42px 22px;
+        border-radius: 24px;
       }
 
-      .expense-list {
+      .grid {
         grid-template-columns: 1fr;
       }
 
@@ -346,6 +444,20 @@
 
       .btn {
         width: 100%;
+      }
+
+      .card {
+        padding: 24px;
+      }
+
+      .cover-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .payment-item {
+        min-height: 68px;
+        padding: 16px;
       }
     }
   </style>
@@ -368,12 +480,8 @@
         </p>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#support">
-            Support Landon
-          </a>
-          <a class="btn btn-secondary" href="#story">
-            Read His Story
-          </a>
+          <a class="btn btn-primary" href="#support">Support Landon</a>
+          <a class="btn btn-secondary" href="#story">Read His Story</a>
         </div>
       </div>
     </section>
@@ -384,6 +492,7 @@
           <h2 class="section-title">Goal Tracker</h2>
           <div class="amount">$1,000 raised</div>
         </div>
+
         <div class="goal">
           $5,000 goal<br />
           20% funded
@@ -400,48 +509,56 @@
     </section>
 
     <section id="support" class="grid">
-      <div class="card">
-        <h2 class="section-title">Choose How You’d Like to Support</h2>
-
+      <div class="card payment-card">
+        <h2 class="section-title">Choose a Payment Option</h2>
         <p class="progress-note">
-          Select a payment option below and enter any amount that works for you.
+          Select the option that works best and enter any amount you would like to send.
         </p>
 
         <div class="payment-list">
           <a class="payment-item" href="https://venmo.com/u/Csgentry" target="_blank" rel="noopener">
-            <div class="payment-label">Venmo</div>
-            <div class="payment-value">@Csgentry</div>
-            <div class="payment-description">Opens Venmo so you can enter your own amount.</div>
+            <div class="payment-left">
+              <div class="payment-label">Venmo</div>
+              <div class="payment-value">@Csgentry</div>
+            </div>
+            <div class="payment-arrow">›</div>
           </a>
 
           <a class="payment-item" href="https://www.paypal.me/CodyGentry" target="_blank" rel="noopener">
-            <div class="payment-label">PayPal</div>
-            <div class="payment-value">@CodyGentry</div>
-            <div class="payment-description">Opens PayPal so you can enter your own amount.</div>
+            <div class="payment-left">
+              <div class="payment-label">PayPal</div>
+              <div class="payment-value">@CodyGentry</div>
+            </div>
+            <div class="payment-arrow">›</div>
           </a>
 
           <a class="payment-item" href="sms:+13175077258?body=Hi%20Cody%2C%20I%27d%20like%20to%20support%20Landon%27s%20IberCup%20trip.">
-            <div class="payment-label">Apple Pay</div>
-            <div class="payment-value">Text Cody at 317-507-7258</div>
-            <div class="payment-description">Opens a text message so you can send support through Apple Cash.</div>
+            <div class="payment-left">
+              <div class="payment-label">Apple Pay</div>
+              <div class="payment-value">Text Cody</div>
+            </div>
+            <div class="payment-arrow">›</div>
           </a>
         </div>
 
-        <p class="progress-note">
-          Please include “Landon IberCup” in the note if possible.
-        </p>
+        <div class="note-box">
+          Please include <strong>“Landon IberCup”</strong> in the payment note if possible.
+        </div>
       </div>
 
-      <div class="card">
-        <h2 class="section-title">What Support Helps Cover</h2>
+      <div class="card covers-card">
+        <h2 class="section-title">What Support Covers</h2>
+        <p class="progress-note">
+          Funds raised help with the major costs connected to the trip.
+        </p>
 
-        <div class="expense-list">
-          <div class="expense">Tournament fees</div>
-          <div class="expense">Airfare</div>
-          <div class="expense">Hotel and lodging</div>
-          <div class="expense">Meals</div>
-          <div class="expense">Local transportation</div>
-          <div class="expense">Trip gear</div>
+        <div class="cover-grid">
+          <div class="cover-item">Tournament Fees</div>
+          <div class="cover-item">Airfare</div>
+          <div class="cover-item">Lodging</div>
+          <div class="cover-item">Meals</div>
+          <div class="cover-item">Transportation</div>
+          <div class="cover-item">Game Day Essentials</div>
         </div>
       </div>
     </section>
@@ -474,7 +591,7 @@
           We are grateful for every person who has helped encourage him along the way.
         </p>
 
-        <div class="names">
+        <div class="supporter-wall">
           Supporter wall coming soon.
         </div>
       </div>
@@ -486,9 +603,7 @@
         Help Landon make the most of this opportunity at IberCup Estoril.
       </p>
 
-      <a class="btn btn-primary" href="#support">
-        Support Landon
-      </a>
+      <a class="btn btn-primary" href="#support">Support Landon</a>
     </section>
 
     <p class="small-note">
